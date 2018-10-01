@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import InfiniteScroll from 'react-infinite-scroller';
 import axios from 'axios';
-import { FontAwesomeIcon } from '../node_modules/@fortawesome/react-fontawesome';
-import { faEye } from '../node_modules/@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 import Gallery from 'react-grid-gallery';
 
