@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import InfiniteScroll from 'react-infinite-scroller';
 import axios from 'axios';
-import { FontAwesomeIcon } from '../node_modules/@fortawesome/react-fontawesome';
-import { faEye } from '../node_modules/@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '../node_modules/@fortawesome/react-fontawesome';
+// import { faEye } from '../node_modules/@fortawesome/free-solid-svg-icons';
 
 
 
@@ -77,7 +77,7 @@ class Info extends React.Component {
 					<div className="text-owner">by {this.props.owner}</div>
 				</div>
 				<div className="right">
-					<FontAwesomeIcon icon={faEye} />&nbsp;{this.props.view}
+					&nbsp;{this.props.view}
 				</div>
 			</div>
 		)
