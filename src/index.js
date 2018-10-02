@@ -3,11 +3,8 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import InfiniteScroll from 'react-infinite-scroller';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
-
-import Gallery from 'react-grid-gallery';
-
+import { FontAwesomeIcon } from '../node_modules/@fortawesome/react-fontawesome';
+import { faEye } from '../node_modules/@fortawesome/free-solid-svg-icons';
 
 
 
@@ -25,9 +22,8 @@ class Scroll extends React.Component
   
     loadItems() {
         //Thay đổi api_key theo ngày
-        const api_key='97625b576d0b7a36de0e967ba2ebb146'
-        const api = 'https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key='+api_key+'&extras=owner_name%2C+url_n%2C+views&per_page=20&page=${this.state.curPage}&format=json&nojsoncallback=1';
-      axios.get(api)
+        const api = `https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=210faf4ab82b8d0fdd0e13dc09080003&extras=owner_name%2C+url_n%2C+views&per_page=20&page=${this.state.curPage}&format=json&nojsoncallback=1`;
+        axios.get(api)
       .then(async(res) => {
         let imageList = this.state.imageList;
         await res.data.photos.photo.map(image => imageList.push(image));
@@ -50,8 +46,10 @@ class Scroll extends React.Component
                 hasMore={this.state.hasMoreItems}
                 loader={loader}>
 
-				<div className="App-body">
-					{this.state.imageList.map((image, i) => <Item key={i} link={image.url_n} owner={image.ownername} title={image.title} view={image.views}/>)}
+				<div id="mygallery">
+					{this.state.imageList.map((image, i) => 
+          <Item key={i} link={image.url_n} owner={image.ownername} title={image.title} view={image.views}/>  
+          )}
 				</div>
 			</InfiniteScroll>
             
@@ -62,10 +60,10 @@ class Scroll extends React.Component
 class Item extends React.Component {
 	render() {
 		return (
-			<a className="container-img" href={this.props.link}>
-				<img src={this.props.link} alt="" />
-				<Info owner={this.props.owner} title={this.props.title} view={this.props.view} />
-			</a>
+        <a className="container-img" href={this.props.link}>
+          <img src={this.props.link} alt="" />
+          <Info owner={this.props.owner} title={this.props.title} view={this.props.view} />
+        </a>
 		);
 	}
 }
@@ -106,7 +104,7 @@ class App extends React.Component {
               </ul>
             </div>
           </div>
-          <div className="App-main">
+          <div >
             <div className="title"><h2>Explore</h2></div>
             <Scroll />
           </div>
