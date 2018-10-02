@@ -3,17 +3,15 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import InfiniteScroll from 'react-infinite-scroller';
 import axios from 'axios';
-// import { FontAwesomeIcon } from '../node_modules/@fortawesome/react-fontawesome';
-// import { faEye } from '../node_modules/@fortawesome/free-solid-svg-icons';
 
 
 
-class Scroll extends React.Component 
+class InfiScroll extends React.Component 
 {
     constructor(props){
 		super(props);
 		this.state = {
-			imageList: [],
+			iList: [],
 			hasMoreItems: true,
 			curPage: 1,
 		}
@@ -25,15 +23,13 @@ class Scroll extends React.Component
         const api = `https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=210faf4ab82b8d0fdd0e13dc09080003&extras=owner_name%2C+url_n%2C+views&per_page=20&page=${this.state.curPage}&format=json&nojsoncallback=1`;
         axios.get(api)
       .then(async(res) => {
-        let imageList = this.state.imageList;
-        await res.data.photos.photo.map(image => imageList.push(image));
-        if(this.state.imageList.length<500){
+        let iList = this.state.iList;
+        res.data.photos.photo.map(image => iList.push(image));
+   
             const curPage = this.state.curPage+1;
-            this.setState({ imageList, curPage });
-        } else {
-            this.setState({ hasMoreItems: false });
-        }
-        console.log(imageList)
+            this.setState({ iList, curPage });
+        
+        console.log(iList)
       })
     }
   
@@ -42,13 +38,13 @@ class Scroll extends React.Component
         return (
 			<InfiniteScroll
 				pageStart={0}
-                loadMore={this.loadItems}
-                hasMore={this.state.hasMoreItems}
-                loader={loader}>
+        loadMore={this.loadItems}
+        hasMore={this.state.hasMoreItems}
+        loader={loader}>
 
 				<div id="mygallery">
-					{this.state.imageList.map((image, i) => 
-          <Item key={i} link={image.url_n} owner={image.ownername} title={image.title} view={image.views}/>  
+					{this.state.iList.map((image, i) => 
+          <Image key={i} link={image.url_n} owner={image.ownername} title={image.title} view={image.views}/>  
           )}
 				</div>
 			</InfiniteScroll>
@@ -57,7 +53,7 @@ class Scroll extends React.Component
     }
 }
 
-class Item extends React.Component {
+class Image extends React.Component {
 	render() {
 		return (
         <a className="container-img" href={this.props.link}>
@@ -77,7 +73,7 @@ class Info extends React.Component {
 					<div className="text-owner">by {this.props.owner}</div>
 				</div>
 				<div className="right">
-					&nbsp;{this.props.view}
+					View:&nbsp;{this.props.view}
 				</div>
 			</div>
 		)
@@ -88,25 +84,17 @@ class App extends React.Component {
     render() {
       return (
         <div className="App">
-          <div className="App-nav">
-            <div className="App-nav-content">
-              <div><span></span></div>
-              <div><a href="/" className="logo">MY COLLECTION</a></div>
+          <div className="nav">
+            <div className="nav-content">
+
               <ul className="menu-nav">
-                <li><a href="/">You</a></li>
-                <li><a href="/">Explore</a></li>
-                <li><a href="/">Create</a></li>
-                <li><a href="/">Get Pro</a></li>
-              </ul>
-              <ul className="tool-nav">
-                <li><a href="/">Login</a></li>
-                <li><a href="/">Sign up</a></li>
+                <li><a href="/"> 1512576_Mycollection</a></li>   
               </ul>
             </div>
           </div>
           <div >
             <div className="title"><h2>Explore</h2></div>
-            <Scroll />
+            <InfiScroll />
           </div>
         </div>
       );
