@@ -26,10 +26,7 @@
       factory(jQuery);
       return jQuery;
     };
-  } else {
-    // Browser globals
-    factory(jQuery);
-  }
+  } 
 }(function ($) {
 
   /**
