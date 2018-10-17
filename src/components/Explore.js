@@ -28,7 +28,7 @@ class Explore extends React.Component {
     }
     loadItems() {
         //Thay đổi api_key theo ngày
-        const api = `https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=7f3bf9e919ffdb73d9c1bc1b5b641411&extras=owner_name%2C+url_n%2C+views&per_page=20&page=${this.state.curPage}&format=json&nojsoncallback=1`;
+        const api = `https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=33f0bda74e99d513d45befe63bdaf3cc&extras=owner_name%2C+url_n%2C+views&per_page=20&page=${this.state.curPage}&format=json&nojsoncallback=1`;
         axios.get(api)
             .then((res) => {
                 let iList = this.state.iList;

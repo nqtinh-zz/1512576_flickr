@@ -42,7 +42,7 @@ class Search extends React.Component {
 
     onHandleSubmit = (event) => {
         event.preventDefault();
-        var api = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=7f3bf9e919ffdb73d9c1bc1b5b641411&tags=${this.state.textsearch}%2C&extras=url_n%2Cviews%2Cowner_name&format=json&nojsoncallback=1`;
+        var api = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=33f0bda74e99d513d45befe63bdaf3cc&tags=${this.state.textsearch}%2C&extras=url_n%2Cviews%2Cowner_name&format=json&nojsoncallback=1`;
 
         axios.get(api)
             .then((res) => {

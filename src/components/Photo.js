@@ -14,7 +14,7 @@ class Photo extends React.Component {
     onHandleSubmit = (event) => {
         event.preventDefault();
         
-        var api=`https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=7f3bf9e919ffdb73d9c1bc1b5b641411&photo_id=${this.props.match.params.id}&secret=${this.props.match.params.server}&format=json&nojsoncallback=1`
+        var api=`https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=33f0bda74e99d513d45befe63bdaf3cc&photo_id=${this.props.match.params.id}&secret=${this.props.match.params.server}&format=json&nojsoncallback=1`
         var img= `https://farm2.staticflickr.com/${this.props.match.params.server}/${this.props.match.params.id}_${this.props.match.params.secret}_n.jpg`
         console.log("dsadas");
         axios.get(api)
